@@ -1,0 +1,13 @@
+<%= form_for [@album, @photo] do |f| %>
+  <p>
+    <strong>Image</strong><br>
+    <%= f.file_field :image_file %>
+  </p>
+  <p>
+    <strong>Name</strong><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

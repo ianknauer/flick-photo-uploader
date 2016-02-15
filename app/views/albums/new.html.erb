@@ -1,0 +1,9 @@
+<%= form_for [@customer,@album] do |f| %>
+  <p>
+    <strong>Name</strong><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

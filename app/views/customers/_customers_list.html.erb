@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% customers_list.each do |customer| %>
+    <tr>
+      <td><%= customer.first_name %></td>
+      <td><%= customer.last_name %></td>
+      <td><%= customer.email %></td>
+      <td><%= link_to "Edit", edit_customer_path(customer) %></td>
+      <td><%= link_to "Create Album", new_customer_album_path(customer) %></td>
+    </tr>
+  <% end %>
+</table>

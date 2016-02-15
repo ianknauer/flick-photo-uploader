@@ -1,0 +1,5 @@
+<h1><%= @album.name %></h1>
+<em><%= @album.contacted_status %></em>
+<h3>Customer info : <%= @album.photos.count %> photos in album</h3>
+<%= link_to "edit", edit_album_path(@album) %>
+<p><%= link_to "#{@album.customer.first_name} #{@album.customer.last_name}", customer_path(@album.customer)%></p>

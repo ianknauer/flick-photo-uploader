@@ -1,0 +1,7 @@
+<h1><%= @customer.first_name %><%= @customer.last_name %></h1>
+
+<ul>
+<% @customer.albums.decorate.each do |album| %>
+  <li><%= link_to album.name, album_path(album) %> : <%= album.contacted_status %></li>
+<% end %>
+</ul>

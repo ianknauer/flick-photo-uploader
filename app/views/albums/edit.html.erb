@@ -1,0 +1,20 @@
+<%= form_for @album do |f| %>
+  <p>
+    <strong>Name</strong><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.fields_for :photos, Photo.new do |form| %>
+      <%= form.file_field :image_file, multiple: true, name: "photos[image_file][]" %>
+    <% end %>
+  </p>
+  <p>Ready to upload<br>
+    <%= f.check_box :published %>
+  </p>
+  <p>Ready to send<br>
+    <%= f.check_box :contacted %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

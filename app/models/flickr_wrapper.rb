@@ -1,8 +1,8 @@
-module FlickrWrapper #these all operate individually, which means we're connecting to the flickr API for each file. 
+module FlickrWrapper #these all operate individually, which means we're connecting to the flickr API for each file.
   class Photo
     attr_reader :response #makes response available
     def self.create(options={}) #uploads photo to FLickr via flickraw gem, takes the four options passed in through the service
-      response = flickr.upload_photo Rails.public_path.join("system/photos/image_files/000/000/#{options[:id]}/resized/#{options[:name]}"),
+      response = flickr.upload_photo Rails.public_path.join("system/photos/image_files/000/000/0#{options[:id]}/resized/#{options[:name]}"),
       title: options[:title],
       description: options[:description]
     end

@@ -9,7 +9,7 @@ class Photo < ActiveRecord::Base
         medium: "300x200>",
         thumb: "100x100>",
         :resized => {
-          :geometry => "500×500>",
+          :geometry => "1000×1000>",
           :watermark_path => "#{Rails.root}/public/images/watermark.png",
           :position => "Center"
         }

@@ -11,4 +11,7 @@ Rails.application.routes.draw do
       post :search, to: "customers#search"
     end
   end
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 end

@@ -14,7 +14,8 @@ gem 'figaro'
 gem 'paperclip'
 gem 'draper', '~> 1.3'
 gem 'flickraw'
-gem 'pry'
+gem 'sidekiq'
+gem 'sinatra', :require => nil
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -28,6 +29,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', "~> 3.1.0"
   gem "factory_girl_rails", "~> 4.4.1"
+  gem 'pry'
 end
 
 group :development do

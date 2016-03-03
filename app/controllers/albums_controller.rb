@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
-  before_action :set_album, only: [:show, :edit, :update, :index]
+  before_action :set_album, only: [:edit, :update]
+  before_action :decorated_set_album, only: [:show, :index]
 
   def show
   end
@@ -33,11 +34,12 @@ class AlbumsController < ApplicationController
         flash[:success] = "You have uploaded the files to this album"
       end
       if @album.published? #this is the checkbox to get the files up to flickr
-        upload = PhotosToFlickr.new(@album).upload_photos_and_create_album #This calls the service, keeps all of the logic out of the controller
-        if upload.successful?
-          @album.url = upload.url
-          @album.save #if successful we attach the flickr url to the album
-        end
+        UploadJob.perform_later @album
+        #upload = PhotosToFlickr.new(@album).upload_photos_and_create_album #This calls the service, keeps all of the logic out of the controller
+        #if upload.successful?
+        #  @album.url = upload.url
+        #  @album.save #if successful we attach the flickr url to the album
+        #end
       end
       if @album.contacted? #this is the last check box to get the emial to the customer
         AlbumMailer::album_ready_email(@album).deliver #this is a mailer that send a pre-written email with a link to the file on flickr
@@ -56,6 +58,10 @@ class AlbumsController < ApplicationController
   end
 
   def set_album #i'm using a decorator here to show whether a customer has been contacted about an album or not
+    @album = Album.find(params[:id])
+  end
+
+  def decorated_set_album #i'm using a decorator here to show whether a customer has been contacted about an album or not
     @album = AlbumDecorator.decorate(Album.find(params[:id]))
   end
 end
